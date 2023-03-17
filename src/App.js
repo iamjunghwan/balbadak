@@ -1,21 +1,37 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  BrowserRouter,
+  Route,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import EnrollPage from "./pages/EnrollPage";
 import DetailPage from "./pages/DetailPage";
 import Main from "./pages/Main";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+    errorElement: <></>,
+  },
+  {
+    path: "/enroll",
+    element: <EnrollPage />,
+  },
+  {
+    path: "/detail",
+    element: <DetailPage />,
+  },
+]);
+
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Main />}></Route>
-          <Route path="/enroll" element={<EnrollPage />}></Route>
-          <Route path="/detail" element={<DetailPage />}></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
