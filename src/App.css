@@ -1,38 +1,194 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap");
+
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nanum Pen Script";
+  min-height: 100vh;
+  margin: 0px;
+}
+
+@media (min-width: 650px) {
+  .App {
+    /*background-color: black;*/
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .App {
+  min-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  /* padding: 20px;
+  font-family: "Nanum Pen Script", cursive;
+  font-family: "Yeon Sung", cursive; */
+}
+
+.Button {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  font-size: 18px;
+
+  white-space: nowrap;
+  font-family: "Nanum Pen Script";
+}
+
+/* start 헤더영역 css */
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div {
+  display: flex;
+}
+
+header > div {
+  display: flex;
+}
+
+header .centerText {
+  width: 80%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .leftImg {
+  justify-content: start;
+}
+
+header .rightImg {
+  justify-content: end;
+}
+
+/* end 헤더영역 css */
+
+.ListItem_area {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+/* ListTemplate 영역*/
+
+.DiaryList .menu_wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /*최신순 버튼, 전부다 버튼           새 일기 쓰기     사이에 이렇게 간격이 벌어짐*/
+}
+
+.DiaryList .menu_wrapper .right_col {
+  flex-grow: 1;
+}
+
+.DiaryList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+.DiaryList .FncMemu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: Nanum Pen Script;
+  font-size: 18px;
+}
+
+/* start ListItem 영역 */
+
+.ListItem {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: block;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.ListItem .emotion_img_wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  border-radius: 5px;
+
+  width: 200px;
+  height: 200px;
+  border: 1px solid #c3c3c3;
+  display: -webkit-flex;
+  -webkit-flex-direction: row-reverse;
+  display: flex;
+  flex-direction: row;
+}
+
+.ListItem .emotion_img_wrapper img {
+  width: 100%;
+  float: left;
+}
+
+.ListItem .info_wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.ListItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.ListItem .diary_content_preview {
+  font-size: 18px;
+}
+
+/* text 요소 가운데 정렬 */
+
+.text_area {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.menu_col {
+  height: 10%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.img_item {
+  cursor: pointer;
+  margin: 0px 60px 0px 60px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* item detail  */
+.selectItem_area {
+  margin-left: 100px;
 }
