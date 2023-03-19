@@ -1,7 +1,13 @@
 import ListItem from "../components/ListItem";
 
 const ListTemplate = () => {
-  const itemList = [];
+  const itemList = [
+    { imgNm: `background.png` },
+    { imgNm: "lake.png" },
+    { imgNm: `background.png` },
+    { imgNm: "lake.png" },
+    { imgNm: `background.png` }
+  ];
 
   return (
     <>
@@ -22,11 +28,9 @@ const ListTemplate = () => {
           </div>
         </div>
         <div className="ListItem_area">
-          <ListItem imgNm={`background`}></ListItem>
-          <ListItem imgNm={`lake`}></ListItem>
-          <ListItem imgNm={`background`}></ListItem>
-          <ListItem imgNm={`lake`}></ListItem>
-          <ListItem imgNm={`background`}></ListItem>
+          {itemList.map(item => (
+            <ListItem imgNm={item.imgNm}></ListItem>
+          ))}
         </div>
       </div>
     </>
