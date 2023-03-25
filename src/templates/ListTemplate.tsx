@@ -6,8 +6,19 @@ const ListTemplate = () => {
     { imgNm: "lake.png" },
     { imgNm: `background.png` },
     { imgNm: "lake.png" },
-    { imgNm: `background.png` }
+    { imgNm: `background.png` },
+    { imgNm: `2.mp4` },
   ];
+
+  const FncSetComponentList = () => {
+    return itemList.map((item, idx) => (
+      <ListItem
+        id={idx.toString()}
+        key={idx.toString()}
+        imgNm={item.imgNm}
+      ></ListItem>
+    ));
+  };
 
   return (
     <>
@@ -15,23 +26,28 @@ const ListTemplate = () => {
         <div className="menu_wrapper">
           <div className="menu_col">
             <div className="img_item">
-              <img src={process.env.PUBLIC_URL + `../hamburger.png`}></img>
+              <img
+                src={process.env.PUBLIC_URL + `../hamburger.png`}
+                alt={`로딩중...`}
+              ></img>
             </div>
 
             <div className="img_item">
-              <img src={process.env.PUBLIC_URL + `../like.png`}></img>
+              <img
+                src={process.env.PUBLIC_URL + `../like.png`}
+                alt={`로딩중...`}
+              ></img>
             </div>
 
             <div className="img_item">
-              <img src={process.env.PUBLIC_URL + `../joy.png`}></img>
+              <img
+                src={process.env.PUBLIC_URL + `../joy.png`}
+                alt={`로딩중...`}
+              ></img>
             </div>
           </div>
         </div>
-        <div className="ListItem_area">
-          {itemList.map(item => (
-            <ListItem imgNm={item.imgNm}></ListItem>
-          ))}
-        </div>
+        <div className="ListItem_area">{FncSetComponentList()}</div>
       </div>
     </>
   );

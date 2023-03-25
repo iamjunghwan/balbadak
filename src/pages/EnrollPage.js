@@ -1,5 +1,6 @@
 import Header from "../components/Header";
 import Button from "../components/Button";
+import EnrollTemplate from "../templates/EnrollTemplate";
 
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const EnrollPage = () => {
   };
 
   return (
-    <div>
+    <>
       <Header
         leftComponent={
           <Button
@@ -20,13 +21,15 @@ const EnrollPage = () => {
         }
         centerComponent={"새 게시물"}
         rightComponent01={
-          <Button
-            src={process.env.PUBLIC_URL + `../newCreate.png`}
-            onClick={fnMovePage}
-          />
+          <p onClick={() => fnMovePage("/")}>{"공유"}</p>
+          // <Button
+          //   src={process.env.PUBLIC_URL + `../newCreate.png`}
+          //   onClick={fnMovePage}
+          // />
         }
       />
-    </div>
+      <EnrollTemplate></EnrollTemplate>
+    </>
   );
 };
 

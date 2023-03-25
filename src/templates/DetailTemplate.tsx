@@ -5,6 +5,7 @@ const DetailTemplate = () => {
     <div className="Deatail_area">
       <div className="selectItem_area">
         <ListItem
+          id={"1"}
           imgNm={`background`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
@@ -12,6 +13,7 @@ const DetailTemplate = () => {
           editImg={true}
         ></ListItem>
         <ListItem
+          id={"2"}
           imgNm={`lake`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
@@ -19,6 +21,7 @@ const DetailTemplate = () => {
           editImg={true}
         ></ListItem>
         <ListItem
+          id={"3"}
           imgNm={`background`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
@@ -26,6 +29,7 @@ const DetailTemplate = () => {
           editImg={true}
         ></ListItem>
         <ListItem
+          id={"4"}
           imgNm={`lake`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
@@ -33,6 +37,7 @@ const DetailTemplate = () => {
           editImg={true}
         ></ListItem>
         <ListItem
+          id={"5"}
           imgNm={`background`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}

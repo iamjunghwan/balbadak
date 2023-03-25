@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import EnrollPage from "./pages/EnrollPage";
 import DetailPage from "./pages/DetailPage";
+import EditPage from "./pages/EditPage";
 import Main from "./pages/Main";
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/detail",
     element: <DetailPage />,
+  },
+  {
+    path: "/edit",
+    element: <EditPage />,
   },
 ]);
 
