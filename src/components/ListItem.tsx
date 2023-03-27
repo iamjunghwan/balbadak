@@ -23,14 +23,13 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
       </a>
       <div
         className={"img_wrapper"}
-        onClick={(e) => {
+        onClick={e => {
           fnMovePage("/detail", e);
         }}
       >
         {imgNm.split(".")[1] === "png" ? (
           <img
-            src={process.env.PUBLIC_URL + `../STS2.zip`}
-            // src={process.env.PUBLIC_URL + `../` + imgNm}
+            src={process.env.PUBLIC_URL + `../` + imgNm}
             // src="C:/dev/abc.png"
             alt="이미지 불러오는 중..."
           />
@@ -54,7 +53,7 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
       {editImg && (
         <div
           className={"img_wrapper"}
-          onClick={(e) => {
+          onClick={e => {
             fnMovePage("/edit", e);
           }}
         >
