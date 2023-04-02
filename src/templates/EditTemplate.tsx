@@ -1,23 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 
+import { useParams } from "react-router-dom";
 const EditTemplate = () => {
   //file : File , thum : String , type : String
   const [img, setimg] = useState(null);
   const focus = useRef<any>();
 
   useEffect(() => {
-    if (img) {
-      focus.current.focus();
-    }
-  }, [img]);
+    focus.current.focus();
+  }, []);
 
-  const fncFileUpload = (e) => {
+  const fncFileUpload = e => {
     //e.preventDefault();
     const _file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(_file);
 
-    return new Promise<void>((resolve) => {
+    return new Promise<void>(resolve => {
       reader.onload = () => {
         setimg(reader.result || null); // 파일의 컨텐츠
         resolve();
@@ -38,7 +37,6 @@ const EditTemplate = () => {
             id={"text_wrapper"}
             placeholder="문구를 작성해주세요."
             ref={focus}
-            value={""}
           ></textarea>
         </section>
       </div>

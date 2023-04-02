@@ -13,14 +13,14 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
   const nvg = useNavigate();
 
   const fnMovePage = (pageNm, e) => {
-    nvg(pageNm);
+    nvg(`/edit/${id}`);
   };
 
   return (
     <div className="ListItem" id={id}>
-      <a href="file:///C:/dev/abc.png" download>
+      {/* <a href="file:///C:/dev/abc.png" download>
         {"다운로드"}
-      </a>
+      </a> */}
       <div
         className={"img_wrapper"}
         onClick={e => {
@@ -42,13 +42,13 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
           </video>
         )}
       </div>
-      {txt && (
-        <textarea rows={10} cols={30} readOnly>
-          {txt}
-        </textarea>
-      )}
       <p className="text_area">{like}</p>
       <p className="text_area">{rgDate}</p>
+      {txt && (
+        <>
+          <textarea rows={10} cols={30} readOnly value={txt}></textarea>
+        </>
+      )}
 
       {editImg && (
         <div
@@ -57,12 +57,10 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
             fnMovePage("/edit", e);
           }}
         >
-          (
           <img
             src={process.env.PUBLIC_URL + `../edit.png`}
             alt={"로딩중..."}
           ></img>
-          )
         </div>
       )}
     </div>
