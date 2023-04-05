@@ -199,11 +199,26 @@ header .rightImg {
   height: 400px;
   border: 1px solid black;
   margin-bottom: 40px;
-  width: 380px;
-  overflow: auto;
+  width: 100%;
   display: inline-block;
   justify-content: center;
   position: relative;
+}
+
+.edit_area textarea {
+  font-family: Nanum Pen Script;
+  font-size: 20px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 20px;
 }
 
 .img_area {
@@ -218,4 +233,21 @@ header .rightImg {
   font-size: 20px;
   padding: 10px 20px;
   white-space: nowrap;
+}
+
+/* EnrollTemplate start*/
+.enroll_area textarea {
+  font-family: Nanum Pen Script;
+  font-size: 20px;
+
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 200px;
+  resize: vertical;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ececec;
+
+  padding: 20px;
 }

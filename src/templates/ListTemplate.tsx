@@ -1,43 +1,38 @@
+import { useContext, useEffect, useState } from "react";
 import ListItem from "../components/ListItem";
 import axios from "axios";
 import { BACK_END_SERVER_URL } from "../config/config.js";
 import { callApi } from "../config/callApi.js";
-import { useEffect, useState } from "react";
+
+import { GlobalDispatchContext, GlobalStateContext } from "../App.js";
 
 //axios.defaults.withCredentials = true;
 
-const ListTemplate = ({ data }) => {
+const ListTemplate = () => {
+  // const { onEdit } = useContext(GlobalDispatchContext);
+  const itemList = useContext(GlobalStateContext);
   const [apiData, setApiData] = useState("");
-  console.log("data : " + data);
-  useEffect(() => {
-    const data = callApi("https://jsonplaceholder.typicode.com/users")
-      .then(response => {
-        //setApiData(JSON.stringify(response));
-      })
-      .catch(error => {
-        console.log("error");
-        console.log(error);
-      });
-    // console.log(rsult);
-  }, []);
 
-  const itemList = [
+  /* const itemList = [
     { imgNm: `book.png` },
     { imgNm: "screen.png" },
     { imgNm: `book.png` },
     { imgNm: "screen.png" },
     { imgNm: `book.png` },
-    { imgNm: `2.mp4` }
-  ];
+    { imgNm: `2.mp4` },
+  ];*/
 
   const FncSetComponentList = () => {
-    return itemList.map((item, idx) => (
+    return JSON.stringify(itemList);
+
+    /* itemList.map((item, idx) => (
       <ListItem
         id={idx.toString()}
         key={idx.toString()}
         imgNm={item.imgNm}
       ></ListItem>
     ));
+    */
   };
 
   return (
@@ -65,7 +60,7 @@ const ListTemplate = ({ data }) => {
                 alt={`로딩중...`}
               ></img>
             </div>
-            <div>{apiData}</div>
+            <div>{}</div>
           </div>
         </div>
         <div className="ListItem_area">{FncSetComponentList()}</div>

@@ -7,18 +7,7 @@ import { GlobalStateContext } from "../App";
 import { useNavigate } from "react-router-dom";
 
 const Main = () => {
-  const [data, setData] = useState([]);
-
   const nvg = useNavigate();
-
-  const itemList = useContext(GlobalStateContext);
-  console.log(itemList);
-
-  useEffect(() => {
-    if (itemList.length >= 1) {
-      setData(itemList);
-    }
-  }, [itemList]);
 
   const fnMovePage = async () => {
     nvg("/enroll");
@@ -45,7 +34,7 @@ const Main = () => {
         }
       />
 
-      <ListTemplate data={itemList} />
+      <ListTemplate />
     </>
   );
 };

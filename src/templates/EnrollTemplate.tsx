@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 
 const EnrollTemplate = () => {
   //file : File , thum : String , type : String
-  const [img, setimg] = useState(null);
+  const [img, setImg] = useState(null);
   const focus = useRef<any>(); //타입 any 넣지 않으면 적용 안됨.
+  const imgRef = useRef<any>();
 
   useEffect(() => {
     focus.current.focus();
@@ -11,13 +12,14 @@ const EnrollTemplate = () => {
 
   const fncFileUpload = (e) => {
     //e.preventDefault();
-    const _file = e.target.files[0];
+    const file = imgRef.current.files[0];
+    //const _file = e.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(_file);
+    reader.readAsDataURL(file);
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setimg(reader.result || null);
+        setImg(reader.result || null);
         resolve();
       };
     });
@@ -25,7 +27,7 @@ const EnrollTemplate = () => {
 
   return (
     <>
-      <div className="Enroll_area">
+      <div className="enroll_area">
         <div className="file_area">
           <section>
             <img className="img_area" src={img}></img>
@@ -35,6 +37,8 @@ const EnrollTemplate = () => {
           <input
             id={"btnFileUpload"}
             type={"file"}
+            accept="image/*"
+            ref={imgRef}
             onChange={(e) => fncFileUpload(e)}
           ></input>
         </section>

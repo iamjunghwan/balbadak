@@ -4,30 +4,24 @@ import {
   RouterProvider,
   BrowserRouter,
   Route,
-  Routes
+  Routes,
 } from "react-router-dom";
+import { callApi } from "./config/callApi.js";
 import "./App.css";
 import EnrollPage from "./pages/EnrollPage";
 import DetailPage from "./pages/DetailPage";
 import EditPage from "./pages/EditPage";
 import Main from "./pages/Main";
-import axios from "axios";
+
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
     case "INIT": {
       return action.data;
     }
-    case "CREATE": {
-      newState = [action.data, ...state];
-      break;
-    }
-    case "REMOVE": {
-      newState = state.filter(it => it.id !== action.targetId);
-      break;
-    }
+
     case "EDIT": {
-      newState = state.map(it =>
+      newState = state.map((it) =>
         it.id === action.data.id ? { ...action.data } : it
       );
       break;
@@ -36,49 +30,48 @@ const reducer = (state, action) => {
       return state;
   }
 
-  localStorage.setItem("diary", JSON.stringify(newState));
-
   return newState;
 };
+
+export const GlobalStateContext = createContext();
+export const GlobalDispatchContext = createContext();
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    errorElement: <></>
+    errorElement: <></>,
   },
   {
     path: "/enroll",
-    element: <EnrollPage />
+    element: <EnrollPage />,
   },
   {
     path: "/detail",
-    element: <DetailPage />
+    element: <DetailPage />,
   },
   {
     path: "/edit/:id",
-    element: <EditPage />
-  }
+    element: <EditPage />,
+  },
 ]);
-export const GlobalStateContext = createContext();
-export const GlobalDispatchContext = createContext();
 
 function App() {
   //저장할 값 , dispatch
-  const [objItem, dispatch] = useReducer(reducer, []);
+  const [items, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
-    const options = {
-      url: "http://172.31.99.98:8070/test/testAPI",
-      method: "POST",
-      header: {
-        "Access-Control-Allow-Headers": "Content-Type"
-      }
-    };
-    const itemList = axios(options).then(response =>
-      console.log(response.data)
-    );
-    dispatch({ type: "INIT", data: itemList });
+    fncItemlist();
   }, []);
+
+  const fncItemlist = async () => {
+    try {
+      const itemList = await callApi.get("/users");
+      dispatch({ type: "INIT", data: JSON.stringify(itemList) });
+    } catch (error) {
+      console.log("error : " + error);
+    }
+  };
 
   const onEdit = (targetId, date, content, emotion) => {
     dispatch({
@@ -87,14 +80,14 @@ function App() {
         id: targetId,
         date: new Date(date).getTime(),
         content,
-        emotion
-      }
+        emotion,
+      },
     });
   };
 
   return (
     <div className="App">
-      <GlobalStateContext.Provider value={objItem}>
+      <GlobalStateContext.Provider value={items}>
         <GlobalDispatchContext.Provider value={{ onEdit }}>
           <RouterProvider router={router} />
         </GlobalDispatchContext.Provider>
