@@ -10,7 +10,7 @@ import { GlobalDispatchContext, GlobalStateContext } from "../App.js";
 
 const ListTemplate = () => {
   // const { onEdit } = useContext(GlobalDispatchContext);
-  const itemList = useContext(GlobalStateContext);
+  const itemList = useContext<any>(GlobalStateContext);
   const [apiData, setApiData] = useState("");
 
   /* const itemList = [
@@ -23,16 +23,19 @@ const ListTemplate = () => {
   ];*/
 
   const FncSetComponentList = () => {
-    return JSON.stringify(itemList);
+    /* return JSON.stringify(itemList); 
 
-    /* itemList.map((item, idx) => (
-      <ListItem
-        id={idx.toString()}
-        key={idx.toString()}
-        imgNm={item.imgNm}
-      ></ListItem>
-    ));
-    */
+    if (itemList.length === 0) {
+      return;
+    } else {
+      itemList.map((item, idx) => (
+        <ListItem
+          id={idx.toString()}
+          key={idx.toString()}
+          imgNm={item.imgNm}
+        ></ListItem>
+      ));
+    }*/
   };
 
   return (
@@ -63,7 +66,9 @@ const ListTemplate = () => {
             <div>{}</div>
           </div>
         </div>
-        <div className="ListItem_area">{FncSetComponentList()}</div>
+        <div className="ListItem_area">
+          {<ListItem id={"1"} key={"1"} imgNm={itemList}></ListItem>}
+        </div>
       </div>
     </>
   );

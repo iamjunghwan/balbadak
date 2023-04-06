@@ -7,8 +7,7 @@ import { GlobalStateContext } from "../App";
 
 const EditPage = () => {
   const nvg = useNavigate();
-  const { id } = useParams();
-  console.log(id);
+  const { id } = useParams<string>();
   const itemList: string = useContext(GlobalStateContext);
   const [itemProps, setItemProps] = useState("");
 
@@ -19,7 +18,7 @@ const EditPage = () => {
     }
   }, [id, itemList]);
 
-  const fnMovePage = (pageNm, e) => {
+  const fnMovePage = (pageNm, e): void => {
     let title = e.target.innerText;
     if (title === "완료" && window.confirm(title + "하시겠습니까?")) {
       nvg(pageNm);

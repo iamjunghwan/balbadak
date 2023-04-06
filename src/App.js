@@ -66,8 +66,20 @@ function App() {
 
   const fncItemlist = async () => {
     try {
-      const itemList = await callApi.get("/users");
-      dispatch({ type: "INIT", data: JSON.stringify(itemList) });
+      const itemList = await callApi.get("/fileTest2");
+      const byteCharacters = atob(itemList);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: "image/png" });
+      const reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = () => {
+        const base64data = reader.result;
+        dispatch({ type: "INIT", data: base64data });
+      };
     } catch (error) {
       console.log("error : " + error);
     }

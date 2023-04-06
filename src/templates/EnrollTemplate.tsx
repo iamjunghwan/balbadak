@@ -1,26 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 
 const EnrollTemplate = () => {
-  //file : File , thum : String , type : String
-  const [img, setImg] = useState(null);
-  const focus = useRef<any>(); //타입 any 넣지 않으면 적용 안됨.
+  const [img, setImg] = useState<string | ArrayBuffer>("");
+  const focus = useRef<any>();
   const imgRef = useRef<any>();
 
   useEffect(() => {
     focus.current.focus();
   }, []);
 
-  const fncFileUpload = (e) => {
-    //e.preventDefault();
-    const file = imgRef.current.files[0];
-    //const _file = e.target.files[0];
+  const fncFileUpload = (e: React.FormEvent<HTMLInputElement>) => {
+    const file: any = imgRef.current.files[0];
+    //사진 올리려다가 취소할 경우 length가 0이 되므로 예외처리
+    if (typeof file === "undefined") {
+      return;
+    }
     const reader = new FileReader();
     reader.readAsDataURL(file);
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
         setImg(reader.result || null);
-        resolve();
       };
     });
   };
@@ -30,7 +30,7 @@ const EnrollTemplate = () => {
       <div className="enroll_area">
         <div className="file_area">
           <section>
-            <img className="img_area" src={img}></img>
+            <img className="img_area" src={img.toString()}></img>
           </section>
         </div>
         <section>

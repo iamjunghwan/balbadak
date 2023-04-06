@@ -5,6 +5,7 @@ const EditTemplate = ({ itemProps }) => {
   //file : File , thum : String , type : String
   const [img, setimg] = useState(null);
   const focus = useRef<any>();
+  const imgRef = useRef<any>();
 
   useEffect(() => {
     focus.current.focus();
@@ -12,9 +13,12 @@ const EditTemplate = ({ itemProps }) => {
 
   const fncFileUpload = (e) => {
     //e.preventDefault();
-    const _file = e.target.files[0];
+    const file = e.target.files[0];
+    if (file) {
+      return;
+    }
     const reader = new FileReader();
-    reader.readAsDataURL(_file);
+    reader.readAsDataURL(file);
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
