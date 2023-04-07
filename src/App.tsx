@@ -1,11 +1,5 @@
 import React, { useEffect, useReducer, createContext } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { callApi } from "./config/callApi.js";
 import "./App.css";
 import EnrollPage from "./pages/EnrollPage";
@@ -13,6 +7,7 @@ import DetailPage from "./pages/DetailPage";
 import EditPage from "./pages/EditPage";
 import Main from "./pages/Main";
 
+//기존 값 state , 변경값 action (data,type);
 const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
@@ -33,8 +28,8 @@ const reducer = (state, action) => {
   return newState;
 };
 
-export const GlobalStateContext = createContext();
-export const GlobalDispatchContext = createContext();
+export const GlobalStateContext = createContext("");
+export const GlobalDispatchContext = createContext({});
 
 const router = createBrowserRouter([
   {
@@ -66,33 +61,22 @@ function App() {
 
   const fncItemlist = async () => {
     try {
-      const itemList = await callApi.get("/fileTest2");
-      const byteCharacters = atob(itemList);
-      const byteNumbers = new Array(byteCharacters.length);
-      for (let i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      const blob = new Blob([byteArray], { type: "image/png" });
-      const reader = new FileReader();
-      reader.readAsDataURL(blob);
-      reader.onloadend = () => {
-        const base64data = reader.result;
-        dispatch({ type: "INIT", data: base64data });
-      };
+      const itemList: [] = await callApi.get("/fileTest3");
+      dispatch({ type: "INIT", data: itemList });
     } catch (error) {
       console.log("error : " + error);
     }
   };
+  const onInit = (id, editContent) => {
+    dispatch({ type: "INIT", data: { id: id, itemContent: editContent } });
+  };
 
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (id, editContent) => {
     dispatch({
       type: "EDIT",
       data: {
-        id: targetId,
-        date: new Date(date).getTime(),
-        content,
-        emotion,
+        id: id,
+        itemContent: editContent,
       },
     });
   };
@@ -100,7 +84,7 @@ function App() {
   return (
     <div className="App">
       <GlobalStateContext.Provider value={items}>
-        <GlobalDispatchContext.Provider value={{ onEdit }}>
+        <GlobalDispatchContext.Provider value={{ onInit, onEdit }}>
           <RouterProvider router={router} />
         </GlobalDispatchContext.Provider>
       </GlobalStateContext.Provider>

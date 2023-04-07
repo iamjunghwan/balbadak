@@ -1,31 +1,24 @@
-import { useEffect, useRef, useState } from "react";
-
+import { useEffect, useRef, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { GlobalDispatchContext, GlobalStateContext } from "../App";
+
 const EditTemplate = ({ itemProps }) => {
-  //file : File , thum : String , type : String
-  const [img, setimg] = useState(null);
   const focus = useRef<any>();
-  const imgRef = useRef<any>();
+  const { id } = useParams<string>();
+  const [content, setContent] = useState("");
+  const itemList = useContext<any>(GlobalStateContext);
+  const { onInit } = useContext<any>(GlobalDispatchContext);
 
   useEffect(() => {
     focus.current.focus();
-  }, []);
+    setContent(itemProps.itemContent);
+  }, [itemProps]);
 
-  const fncFileUpload = (e) => {
-    //e.preventDefault();
-    const file = e.target.files[0];
-    if (file) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-        setimg(reader.result || null); // 파일의 컨텐츠
-        resolve();
-      };
-    });
+  const fncChangeContent = (e) => {
+    setContent(e.target.value);
+    //04.07
+    onInit(itemProps.id, e.target.value);
+    //onEdit(itemProps.id , e.target.value);
   };
 
   return (
@@ -33,7 +26,7 @@ const EditTemplate = ({ itemProps }) => {
       <div className="edit_area">
         <div className="file_area">
           <section>
-            <img className="img_area" src={img}></img>
+            <img className="img_area" src={itemProps.itemFilePath}></img>
           </section>
         </div>
         <section>
@@ -41,8 +34,10 @@ const EditTemplate = ({ itemProps }) => {
             id={"text_wrapper"}
             placeholder="문구를 작성해주세요."
             ref={focus}
-            value={itemProps}
-            onChange={() => {}} //문구 변경 시 state를 하나 선언하고 그쪽에 값을 넣어 id값을 같이 넣어 백엔드로 보낸다.
+            value={content}
+            onChange={(e) => {
+              fncChangeContent(e);
+            }} //문구 변경 시 state를 하나 선언하고 그쪽에 값을 넣어 id값을 같이 넣어 백엔드로 보낸다.
           ></textarea>
         </section>
       </div>

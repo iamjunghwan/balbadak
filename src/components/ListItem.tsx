@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 
 interface ItemType {
   id: string;
-  imgNm?: string;
+  imgSrc?: string;
   editImg?: boolean;
   like?: string;
   rgDate?: string;
-  txt?: string;
+  content?: string;
 }
 
-const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
+const ListItem = ({ id, imgSrc, editImg, like, rgDate, content }: ItemType) => {
   const nvg = useNavigate();
 
   const fnMovePage = (pageNm, e) => {
@@ -29,10 +29,10 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
           fnMovePage("/detail", e);
         }}
       >
-        {imgNm ? (
+        {imgSrc ? (
           <img
             // src={process.env.PUBLIC_URL + `../` + imgNm}
-            src={imgNm}
+            src={imgSrc}
             alt="이미지 불러오는 중..."
           />
         ) : (
@@ -46,11 +46,11 @@ const ListItem = ({ id, imgNm, editImg, like, rgDate, txt }: ItemType) => {
       </div>
       <p className="text_area">{like}</p>
       <p className="text_area">{rgDate}</p>
-      {txt && (
+      {/* {content && (
         <>
-          <textarea rows={10} cols={30} readOnly value={txt}></textarea>
+          <textarea rows={10} cols={30} readOnly value={content}></textarea>
         </>
-      )}
+      )} */}
 
       {editImg && (
         <div

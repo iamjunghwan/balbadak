@@ -1,41 +1,40 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import ListItem from "../components/ListItem";
-import axios from "axios";
-import { BACK_END_SERVER_URL } from "../config/config.js";
-import { callApi } from "../config/callApi.js";
-
-import { GlobalDispatchContext, GlobalStateContext } from "../App.js";
-
-//axios.defaults.withCredentials = true;
+import { GlobalStateContext } from "../App";
 
 const ListTemplate = () => {
-  // const { onEdit } = useContext(GlobalDispatchContext);
   const itemList = useContext<any>(GlobalStateContext);
-  const [apiData, setApiData] = useState("");
 
-  /* const itemList = [
-    { imgNm: `book.png` },
-    { imgNm: "screen.png" },
-    { imgNm: `book.png` },
-    { imgNm: "screen.png" },
-    { imgNm: `book.png` },
-    { imgNm: `2.mp4` },
-  ];*/
+  useEffect(() => {}, [itemList]);
+
+  // const fncImgTransferPreview = (base64) => {
+  //   const byteCharacters = atob(base64);
+  //   const byteNumbers = new Array(byteCharacters.length);
+  //   for (let i = 0; i < byteCharacters.length; i++) {
+  //     byteNumbers[i] = byteCharacters.charCodeAt(i);
+  //   }
+  //   const byteArray = new Uint8Array(byteNumbers);
+  //   const blob = new Blob([byteArray], { type: "image/png" });
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(blob);
+  //   reader.onloadend = () => {
+  //     setRsult(reader.result);
+  //   };
+  // };
 
   const FncSetComponentList = () => {
-    /* return JSON.stringify(itemList); 
-
     if (itemList.length === 0) {
       return;
     } else {
-      itemList.map((item, idx) => (
+      return itemList.map((item, idx) => (
         <ListItem
           id={idx.toString()}
           key={idx.toString()}
-          imgNm={item.imgNm}
+          imgSrc={item.itemFilePath}
+          content={item.itemContent}
         ></ListItem>
       ));
-    }*/
+    }
   };
 
   return (
@@ -66,9 +65,7 @@ const ListTemplate = () => {
             <div>{}</div>
           </div>
         </div>
-        <div className="ListItem_area">
-          {<ListItem id={"1"} key={"1"} imgNm={itemList}></ListItem>}
-        </div>
+        <div className="ListItem_area">{FncSetComponentList()}</div>
       </div>
     </>
   );
