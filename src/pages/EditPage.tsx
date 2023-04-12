@@ -3,19 +3,30 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import EditTemplate from "../templates/EditTemplate";
 import { useNavigate, useParams } from "react-router-dom";
-import { GlobalStateContext, GlobalDispatchContext } from "../App";
+import {
+  reducer,
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from "../config/reducer";
+import { callApi } from "../config/callApi.js";
 
 const EditPage = () => {
   const nvg = useNavigate();
   const { id } = useParams<string>();
   const itemList = useContext<any>(GlobalStateContext);
-  const onEdit = useContext<any>(GlobalDispatchContext);
-  const [itemProps, setItemProps] = useState({});
+  const [itemProps, setItemProps] = useState({
+    itemContent: "",
+    itemFileId: 1,
+    itemFileName: "",
+    itemFilePath: "",
+  });
 
   //state에 set 시킨 데이터를 id값으로 필터 하여 아래 EditTemplate 컴포넌트로 전달
   useEffect(() => {
-    if (itemList.length > 1) {
-      const currItem = itemList.find((item, idx) => id === idx.toString());
+    if (itemList.length > 0) {
+      const currItem = itemList.find(
+        (item, idx) => item.itemFileId - 1 === Number(id)
+      );
       setItemProps(currItem);
     }
   }, [id, itemList]);
@@ -28,9 +39,28 @@ const EditPage = () => {
     nvg(pageNm);
   };
 
-  const fncSave = () => {
+  const getData = (obj) => {
+    setItemProps({
+      ...itemProps,
+      itemFileId: obj.itemFileId,
+      itemContent: obj.itemContent,
+    });
+  };
+
+  const fncSave = async () => {
     if (window.confirm("게시물을 수정 하시겠습니까?")) {
-      onEdit(itemList.id, itemList.itemContent);
+      try {
+        const params = {
+          ...itemProps,
+        };
+
+        //리턴값이 성공이면 리스트api 다시 호출
+        await callApi.post("/file/save", params);
+        // call List
+        nvg("/", { replace: true });
+      } catch (error) {
+        console.log("error : " + error);
+      }
     }
   };
 
@@ -57,7 +87,7 @@ const EditPage = () => {
           </p>
         }
       />
-      <EditTemplate itemProps={itemProps}></EditTemplate>
+      <EditTemplate itemProps={itemProps} getData={getData}></EditTemplate>
     </>
   );
 };

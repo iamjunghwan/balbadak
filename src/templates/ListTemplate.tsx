@@ -1,6 +1,10 @@
 import { useContext, useEffect } from "react";
 import ListItem from "../components/ListItem";
-import { GlobalStateContext } from "../App";
+import {
+  reducer,
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from "../config/reducer";
 
 const ListTemplate = () => {
   const itemList = useContext<any>(GlobalStateContext);

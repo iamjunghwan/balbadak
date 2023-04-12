@@ -6,30 +6,11 @@ import EnrollPage from "./pages/EnrollPage";
 import DetailPage from "./pages/DetailPage";
 import EditPage from "./pages/EditPage";
 import Main from "./pages/Main";
-
-//기존 값 state , 변경값 action (data,type);
-const reducer = (state, action) => {
-  let newState = [];
-  switch (action.type) {
-    case "INIT": {
-      return action.data;
-    }
-
-    case "EDIT": {
-      newState = state.map((it) =>
-        it.id === action.data.id ? { ...action.data } : it
-      );
-      break;
-    }
-    default:
-      return state;
-  }
-
-  return newState;
-};
-
-export const GlobalStateContext = createContext("");
-export const GlobalDispatchContext = createContext({});
+import {
+  reducer,
+  GlobalStateContext,
+  GlobalDispatchContext,
+} from "./config/reducer";
 
 const router = createBrowserRouter([
   {
@@ -61,22 +42,25 @@ function App() {
 
   const fncItemlist = async () => {
     try {
-      const itemList: [] = await callApi.get("/fileTest3");
+      const itemList: [] = await callApi.get("/file/FileArrAPI");
       dispatch({ type: "INIT", data: itemList });
     } catch (error) {
       console.log("error : " + error);
     }
   };
-  const onInit = (id, editContent) => {
-    dispatch({ type: "INIT", data: { id: id, itemContent: editContent } });
+  const onInit = (itemId, editContent) => {
+    dispatch({
+      type: "INIT",
+      data: { itemFileId: itemId, itemContent: editContent },
+    });
   };
 
-  const onEdit = (id, editContent) => {
+  const onEdit = (editItemId, editItemContent) => {
     dispatch({
       type: "EDIT",
       data: {
-        id: id,
-        itemContent: editContent,
+        itemFileId: editItemId,
+        itemContent: editItemContent,
       },
     });
   };

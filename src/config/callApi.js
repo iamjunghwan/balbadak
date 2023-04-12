@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const callApi = axios.create({
-  baseURL: "http://10.10.76.199:8070",
+  baseURL: "http://10.10.76.200:8070", //"http://10.10.76.199:8070",
   //responseType: "blob",
   "Content-Type": "multipart/form-data",
   timeout: 1000,
