@@ -9,7 +9,7 @@ const DetailTemplate = () => {
           imgSrc={`background`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
-          content={"이 사진은 내가 갔던 나라의 한 공간입니다."}
+          postContent={"이 사진은 내가 갔던 나라의 한 공간입니다."}
           editImg={true}
         ></ListItem>
         <ListItem
@@ -17,7 +17,7 @@ const DetailTemplate = () => {
           imgSrc={`lake`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
-          content={"이 사진은 내가 갔던 나라의 한 공간입니다."}
+          postContent={"이 사진은 내가 갔던 나라의 한 공간입니다."}
           editImg={true}
         ></ListItem>
         <ListItem
@@ -25,7 +25,7 @@ const DetailTemplate = () => {
           imgSrc={`background`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
-          content={"이 사진은 내가 갔던 나라의 한 공간입니다."}
+          postContent={"이 사진은 내가 갔던 나라의 한 공간입니다."}
           editImg={true}
         ></ListItem>
         <ListItem
@@ -33,7 +33,7 @@ const DetailTemplate = () => {
           imgSrc={`lake`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
-          content={"이 사진은 내가 갔던 나라의 한 공간입니다."}
+          postContent={"이 사진은 내가 갔던 나라의 한 공간입니다."}
           editImg={true}
         ></ListItem>
         <ListItem
@@ -41,7 +41,7 @@ const DetailTemplate = () => {
           imgSrc={`background`}
           like={"♥ 100명이 좋아 합니다."}
           rgDate={"2023.03.17"}
-          content={"이 사진은 내가 갔던 나라의 한 공간입니다."}
+          postContent={"이 사진은 내가 갔던 나라의 한 공간입니다."}
           editImg={true}
         ></ListItem>
       </div>

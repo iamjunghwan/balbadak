@@ -15,7 +15,7 @@ const EditTemplate = ({ itemProps, getData }) => {
 
   useEffect(() => {
     focus.current.focus();
-    setContent(itemProps.itemContent);
+    setContent(itemProps.itemPostContent);
   }, [itemProps]);
 
   const fncChangeVal = (content) => {

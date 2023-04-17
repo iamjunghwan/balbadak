@@ -1,30 +1,25 @@
 import { useContext, useEffect } from "react";
 import ListItem from "../components/ListItem";
-import {
-  reducer,
-  GlobalStateContext,
-  GlobalDispatchContext,
-} from "../config/reducer";
+import { GlobalStateContext, GlobalDispatchContext } from "../config/reducer";
+import { callApi } from "../config/callApi";
 
 const ListTemplate = () => {
   const itemList = useContext<any>(GlobalStateContext);
+  const { dispatch } = useContext<any>(GlobalDispatchContext);
 
-  useEffect(() => {}, [itemList]);
+  useEffect(() => {
+    fncItemlist();
+  }, []);
 
-  // const fncImgTransferPreview = (base64) => {
-  //   const byteCharacters = atob(base64);
-  //   const byteNumbers = new Array(byteCharacters.length);
-  //   for (let i = 0; i < byteCharacters.length; i++) {
-  //     byteNumbers[i] = byteCharacters.charCodeAt(i);
-  //   }
-  //   const byteArray = new Uint8Array(byteNumbers);
-  //   const blob = new Blob([byteArray], { type: "image/png" });
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(blob);
-  //   reader.onloadend = () => {
-  //     setRsult(reader.result);
-  //   };
-  // };
+  const fncItemlist = async () => {
+    try {
+      const itemList: [] = await callApi.get("/file/FileArrAPI");
+      dispatch({ type: "INIT", data: itemList });
+      FncSetComponentList();
+    } catch (error) {
+      console.log("error : " + error);
+    }
+  };
 
   const FncSetComponentList = () => {
     if (itemList.length === 0) {
@@ -35,7 +30,7 @@ const ListTemplate = () => {
           id={idx.toString()}
           key={idx.toString()}
           imgSrc={item.itemFilePath}
-          content={item.itemContent}
+          postContent={item.itemPostContent}
         ></ListItem>
       ));
     }

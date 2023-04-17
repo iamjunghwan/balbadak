@@ -6,23 +6,25 @@ interface ItemType {
   editImg?: boolean;
   like?: string;
   rgDate?: string;
-  content?: string;
+  postContent?: string;
 }
 
-const ListItem = ({ id, imgSrc, editImg, like, rgDate, content }: ItemType) => {
+const ListItem = ({
+  id,
+  imgSrc,
+  editImg,
+  like,
+  rgDate,
+  postContent,
+}: ItemType) => {
   const nvg = useNavigate();
 
   const fnMovePage = (pageNm, e) => {
     nvg(`/edit/${id}`);
   };
 
-  const fncString = () => {};
-
   return (
     <div className="ListItem" id={id}>
-      {/* <a href="file:///C:/dev/abc.png" download>
-        {"다운로드"}
-      </a> */}
       <div
         className={"img_wrapper"}
         onClick={(e) => {
@@ -30,11 +32,7 @@ const ListItem = ({ id, imgSrc, editImg, like, rgDate, content }: ItemType) => {
         }}
       >
         {imgSrc ? (
-          <img
-            // src={process.env.PUBLIC_URL + `../` + imgNm}
-            src={imgSrc}
-            alt="이미지 불러오는 중..."
-          />
+          <img src={imgSrc} alt="이미지 불러오는 중..." />
         ) : (
           <video controls muted autoPlay loop width="210" height="200">
             <source

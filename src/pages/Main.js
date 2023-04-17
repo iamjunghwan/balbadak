@@ -11,17 +11,8 @@ const Main = () => {
 
   const fnMovePage = async () => {
     nvg("/enroll");
-    /* console.log("호출 전");
-    const getData = await fetch(
-      "https://jsonplaceholder.typicode.com/posts"
-    ).then(function (res) {
-      return res.json();
-    });
-
-    console.log(getData);
-    console.log("호출 후");
-    */
   };
+
   return (
     <>
       <Header
