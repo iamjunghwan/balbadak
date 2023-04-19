@@ -1,3 +1,4 @@
+import React from "react";
 const Header = ({
   leftComponent,
   centerComponent,
@@ -14,4 +15,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default React.memo(Header);

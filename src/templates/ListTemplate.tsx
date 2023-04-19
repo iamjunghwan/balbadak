@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import ListItem from "../components/ListItem";
 import { GlobalStateContext, GlobalDispatchContext } from "../config/reducer";
 import { callApi } from "../config/callApi";
+import ListItem from "../components/ListItem";
 
 const ListTemplate = () => {
   const itemList = useContext<any>(GlobalStateContext);
@@ -27,8 +27,8 @@ const ListTemplate = () => {
     } else {
       return itemList.map((item, idx) => (
         <ListItem
-          id={idx.toString()}
-          key={idx.toString()}
+          id={item.itemPostId.toString()}
+          key={item.itemPostId.toString()}
           imgSrc={item.itemFilePath}
           postContent={item.itemPostContent}
         ></ListItem>
@@ -64,7 +64,7 @@ const ListTemplate = () => {
             <div>{}</div>
           </div>
         </div>
-        <div className="ListItem_area">{FncSetComponentList()}</div>
+        <div className="ListItem_area">{itemList && FncSetComponentList()}</div>
       </div>
     </>
   );

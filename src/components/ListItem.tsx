@@ -32,7 +32,11 @@ const ListItem = ({
         }}
       >
         {imgSrc ? (
-          <img src={imgSrc} alt="이미지 불러오는 중..." />
+          <img
+            src={imgSrc}
+            alt="thumbnail"
+            style={{ width: 200, height: 200 }}
+          />
         ) : (
           <video controls muted autoPlay loop width="210" height="200">
             <source

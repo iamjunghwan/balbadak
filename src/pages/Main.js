@@ -1,9 +1,6 @@
-import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import ListTemplate from "../templates/ListTemplate";
-import { GlobalStateContext } from "../App";
-
 import { useNavigate } from "react-router-dom";
 
 const Main = () => {

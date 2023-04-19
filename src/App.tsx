@@ -1,7 +1,5 @@
-import React, { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { callApi } from "./config/callApi.js";
-import "./App.css";
 import EnrollPage from "./pages/EnrollPage";
 import DetailPage from "./pages/DetailPage";
 import EditPage from "./pages/EditPage";
@@ -11,6 +9,7 @@ import {
   GlobalStateContext,
   GlobalDispatchContext,
 } from "./config/reducer";
+import "./App.css";
 
 const router = createBrowserRouter([
   {

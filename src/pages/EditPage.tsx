@@ -1,6 +1,5 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
-import Button from "../components/Button";
 import EditTemplate from "../templates/EditTemplate";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -25,7 +24,7 @@ const EditPage = () => {
   useEffect(() => {
     if (itemList.length > 0) {
       const currItem = itemList.find(
-        (item, idx) => item.itemFileId - 1 === Number(id)
+        (item, idx) => item.itemFileId === Number(id)
       );
       setItemProps(currItem);
     }
@@ -34,9 +33,9 @@ const EditPage = () => {
   const fnMovePage = (pageNm, e): void => {
     let title = e.target.innerText;
     if (title === "완료" && window.confirm(title + "하시겠습니까?")) {
-      nvg(pageNm);
+      nvg(pageNm, { replace: true });
     }
-    nvg(pageNm);
+    nvg(pageNm, { replace: true });
   };
 
   const getData = (obj) => {
@@ -55,7 +54,8 @@ const EditPage = () => {
         };
 
         //리턴값이 성공이면 리스트api 다시 호출
-        await callApi.post("/file/save", params);
+        const aa = await callApi.post("/file/save", params);
+        console.log(aa);
         // call List
         nvg("/", { replace: true });
       } catch (error) {

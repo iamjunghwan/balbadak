@@ -25,8 +25,6 @@ const EnrollPage = () => {
         );
 
         if (success && data) {
-          const itemList: [] = await callApi.get("/file/FileArrAPI");
-          dispatch({ type: "INIT", data: itemList });
           nvg("/", { replace: true });
         }
       } catch (error) {
