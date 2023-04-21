@@ -9,7 +9,6 @@ import { callApi } from "../config/callApi";
 const EnrollPage = () => {
   const nvg = useNavigate();
   const [itemProps, setItemProps] = useState<any>();
-  const { dispatch } = useContext<any>(GlobalDispatchContext);
 
   const getData = (fromData) => {
     setItemProps({
@@ -19,10 +18,15 @@ const EnrollPage = () => {
   const fncSave = async () => {
     if (window.confirm("게시물을 등록 하시겠습니까?")) {
       try {
-        const { success, data } = await callApi.post(
-          "/post/postSaveAPI2",
-          itemProps.formData
-        );
+        const url = "/post/postSaveAPI2";
+        const params = itemProps.formData;
+        const optConfig = {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        };
+
+        const { success, data } = await callApi.post(url, params, optConfig);
 
         if (success && data) {
           nvg("/", { replace: true });

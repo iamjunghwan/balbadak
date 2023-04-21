@@ -13,11 +13,12 @@ const ListTemplate = () => {
 
   const fncItemlist = async () => {
     try {
-      const itemList: [] = await callApi.get("/file/FileArrAPI");
+      const url = "/file/FileArrAPI";
+      const itemList: [] = await callApi.get(url);
       dispatch({ type: "INIT", data: itemList });
       FncSetComponentList();
     } catch (error) {
-      console.log("error : " + error);
+      console.error("error : " + error);
     }
   };
 
@@ -27,10 +28,10 @@ const ListTemplate = () => {
     } else {
       return itemList.map((item, idx) => (
         <ListItem
-          id={item.itemPostId.toString()}
-          key={item.itemPostId.toString()}
-          imgSrc={item.itemFilePath}
-          postContent={item.itemPostContent}
+          id={item.postId.toString()}
+          key={item.postId.toString()}
+          imgSrc={item.filePath}
+          postContent={item.postContent}
         ></ListItem>
       ));
     }

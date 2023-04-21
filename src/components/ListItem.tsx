@@ -35,7 +35,7 @@ const ListItem = ({
           <img
             src={imgSrc}
             alt="thumbnail"
-            style={{ width: 200, height: 200 }}
+            style={{ width: 200, height: 200, backgroundSize: "contain" }}
           />
         ) : (
           <video controls muted autoPlay loop width="210" height="200">

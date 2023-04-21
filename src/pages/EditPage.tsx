@@ -2,11 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import EditTemplate from "../templates/EditTemplate";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  reducer,
-  GlobalStateContext,
-  GlobalDispatchContext,
-} from "../config/reducer";
+import { GlobalStateContext } from "../config/reducer";
 import { callApi } from "../config/callApi.js";
 
 const EditPage = () => {
@@ -14,18 +10,17 @@ const EditPage = () => {
   const { id } = useParams<string>();
   const itemList = useContext<any>(GlobalStateContext);
   const [itemProps, setItemProps] = useState({
-    itemContent: "",
-    itemFileId: 1,
-    itemFileName: "",
-    itemFilePath: "",
+    postId: id,
+    postContent: "",
+    postLike: 3,
+    postUserId: 200,
+    filePath: "",
   });
 
   //state에 set 시킨 데이터를 id값으로 필터 하여 아래 EditTemplate 컴포넌트로 전달
   useEffect(() => {
     if (itemList.length > 0) {
-      const currItem = itemList.find(
-        (item, idx) => item.itemFileId === Number(id)
-      );
+      const currItem = itemList.find((item, idx) => item.postId === Number(id));
       setItemProps(currItem);
     }
   }, [id, itemList]);
@@ -41,23 +36,24 @@ const EditPage = () => {
   const getData = (obj) => {
     setItemProps({
       ...itemProps,
-      itemFileId: obj.itemFileId,
-      itemContent: obj.itemContent,
+      postId: obj.postId,
+      postContent: obj.postContent,
     });
   };
 
   const fncSave = async () => {
     if (window.confirm("게시물을 수정 하시겠습니까?")) {
       try {
+        const url = "/post/postUpdateAPI";
         const params = {
           ...itemProps,
+          postUserId: 200,
         };
 
-        //리턴값이 성공이면 리스트api 다시 호출
-        const aa = await callApi.post("/file/save", params);
-        console.log(aa);
-        // call List
-        nvg("/", { replace: true });
+        const { success, data } = await callApi.post(url, params);
+        if (success && data) {
+          nvg("/", { replace: true });
+        }
       } catch (error) {
         console.log("error : " + error);
       }

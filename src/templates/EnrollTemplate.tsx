@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { callApi } from "../config/callApi";
 
 const EnrollTemplate = ({ getData }) => {
   const [img, setImg] = useState<string | ArrayBuffer>("");
-  const [content, setContent] = useState("");
-  const [obj, setObj] = useState({});
   const focus = useRef<any>();
   const imgRef = useRef<any>();
-  const fncChangeVal = (content) => {
+
+  const fncChangeVal = (content: string) => {
     const file: any | [] = imgRef.current.files;
     //사진 올리려다가 취소할 경우 length가 0이 되므로 예외처리
     const formData = new FormData();
@@ -20,7 +18,6 @@ const EnrollTemplate = ({ getData }) => {
       new Blob([params], { type: "application/json" })
     );
 
-    setContent(content);
     getData({ formData });
   };
 
@@ -45,42 +42,33 @@ const EnrollTemplate = ({ getData }) => {
     });
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    const formData = new FormData(e.currentTarget);
-
-    console.log("data", formData);
-  };
-
   return (
     <>
       <div className="enroll_area">
-        <form onSubmit={onSubmit}>
-          <div className="file_area">
-            <section>
-              <img className="img_area" src={img.toString()}></img>
-            </section>
-          </div>
+        <div className="file_area">
           <section>
-            <input
-              id={"btnFileUpload"}
-              type={"file"}
-              accept="image/*"
-              ref={imgRef}
-              onChange={(e) => fncFileUpload(e)}
-              multiple
-            ></input>
+            <img className="img_area" src={img.toString()}></img>
           </section>
-          <section>
-            <textarea
-              id={"text_wrapper"}
-              placeholder="문구를 작성해주세요."
-              ref={focus}
-              onChange={(e) => {
-                fncChangeVal(e.target.value);
-              }}
-            ></textarea>
-          </section>
-        </form>
+        </div>
+        <section>
+          <input
+            id={"btnFileUpload"}
+            type={"file"}
+            accept="image/*"
+            ref={imgRef}
+            onChange={(e) => fncFileUpload(e)}
+            multiple
+          ></input>
+        </section>
+        <section>
+          <textarea
+            placeholder="문구를 작성해주세요."
+            ref={focus}
+            onChange={(e) => {
+              fncChangeVal(e.target.value);
+            }}
+          ></textarea>
+        </section>
       </div>
     </>
   );
