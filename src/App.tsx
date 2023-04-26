@@ -4,6 +4,7 @@ import EnrollPage from "./pages/EnrollPage";
 import DetailPage from "./pages/DetailPage";
 import EditPage from "./pages/EditPage";
 import Main from "./pages/Main";
+import ExceptPage from "./pages/ExceptPage";
 import {
   reducer,
   GlobalStateContext,
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/edit/:id",
     element: <EditPage />,
+  },
+  {
+    path: "/*",
+    element: <ExceptPage />,
   },
 ]);
 
