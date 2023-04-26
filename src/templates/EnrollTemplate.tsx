@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
+import imageCompression from "browser-image-compression";
 
 const EnrollTemplate = ({ getData }) => {
   const [img, setImg] = useState<string | ArrayBuffer>("");
   const focus = useRef<any>();
   const imgRef = useRef<any>();
+  const [custImg, setCustImg] = useState<any>([]);
 
   const fncChangeVal = (content: string) => {
     const file: any | [] = imgRef.current.files;
-    //사진 올리려다가 취소할 경우 length가 0이 되므로 예외처리
+    /*let bolbToFile = new File([custImg], custImg.name); */
     const formData = new FormData();
+    /*  formData.append("files", bolbToFile);*/
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
@@ -40,6 +43,24 @@ const EnrollTemplate = ({ getData }) => {
         setImg(reader.result || null);
       };
     });
+
+    /*  const file: any | [] = imgRef.current.files;
+    const options = {
+      maxSizeMB: 0.3, // 최대 용량
+      maxWidthOrHeight: 400,
+      useWebWorker: true,
+      //onProgress: 0,
+    };
+    try {
+      const compressedFile = await imageCompression(file[0], options);
+      setCustImg(compressedFile);
+      const promise = imageCompression.getDataUrlFromFile(compressedFile);
+      promise.then((result) => {
+        setImg(result);
+      });
+    } catch (error) {
+      console.error("error : " + error);
+    }*/
   };
 
   return (

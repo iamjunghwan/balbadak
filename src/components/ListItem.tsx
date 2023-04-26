@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 interface ItemType {
   id: string;
   imgSrc?: string;
@@ -32,11 +31,7 @@ const ListItem = ({
         }}
       >
         {imgSrc ? (
-          <img
-            src={imgSrc}
-            alt="thumbnail"
-            style={{ width: 200, height: 200, backgroundSize: "contain" }}
-          />
+          <img src={imgSrc} alt="thumbnail" draggable="false" />
         ) : (
           <video controls muted autoPlay loop width="210" height="200">
             <source

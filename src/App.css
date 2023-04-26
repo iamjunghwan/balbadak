@@ -142,12 +142,9 @@ img {
 
 .ListItem .img_wrapper {
   cursor: pointer;
-  min-width: 120px;
-  height: 80px;
   border-radius: 5px;
-
-  width: 200px;
-  height: 200px;
+  /*width: 200px;
+  height: 200px;*/
   border: 1px solid #c3c3c3;
   display: -webkit-flex;
   -webkit-flex-direction: row-reverse;
@@ -156,7 +153,8 @@ img {
 }
 
 .ListItem .img_wrapper img {
-  width: 100%;
+  width: 200px;
+  height: 200px;
   float: left;
 }
 
