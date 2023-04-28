@@ -22,10 +22,10 @@ const router = createBrowserRouter([
     path: "/enroll",
     element: <EnrollPage />,
   },
-  {
-    path: "/detail",
-    element: <DetailPage />,
-  },
+  // {
+  //  path: "/detail",
+  // element: <DetailPage />,
+  // },
   {
     path: "/edit/:id",
     element: <EditPage />,

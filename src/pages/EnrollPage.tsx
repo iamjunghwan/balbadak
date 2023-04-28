@@ -18,7 +18,7 @@ const EnrollPage = () => {
   const fncSave = async () => {
     if (window.confirm("게시물을 등록 하시겠습니까?")) {
       try {
-        const url = "/post/postSaveAPI2";
+        const url = "/post/postSaveAPI";
         const params = itemProps.formData;
         const optConfig = {
           headers: {
@@ -26,7 +26,11 @@ const EnrollPage = () => {
           },
         };
 
-        const { success, data } = await callApi.post(url, params, optConfig);
+        const { success, data, message } = await callApi.post(
+          url,
+          params,
+          optConfig
+        );
 
         if (success && data) {
           nvg("/", { replace: true });

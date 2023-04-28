@@ -30,6 +30,9 @@ const EditTemplate = ({ itemProps, getData }) => {
           </section>
         </div>
         <section>
+          <p className="dateText">{itemProps.createDt}</p>
+        </section>
+        <section>
           <textarea
             placeholder="문구를 작성해주세요."
             ref={focus}

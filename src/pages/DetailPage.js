@@ -24,9 +24,7 @@ const DetailPage = () => {
           centerComponent={"게시물 상세"}
         />
       </div>
-      <div>
-        <DetailTemplate></DetailTemplate>
-      </div>
+      <div></div>
     </>
   );
 };

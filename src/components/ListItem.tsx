@@ -4,7 +4,7 @@ interface ItemType {
   imgSrc?: string;
   editImg?: boolean;
   like?: string;
-  rgDate?: string;
+  createDt?: string;
   postContent?: string;
 }
 
@@ -13,7 +13,7 @@ const ListItem = ({
   imgSrc,
   editImg,
   like,
-  rgDate,
+  createDt,
   postContent,
 }: ItemType) => {
   const nvg = useNavigate();
@@ -42,7 +42,7 @@ const ListItem = ({
         )}
       </div>
       <p className="text_area">{like}</p>
-      <p className="text_area">{rgDate}</p>
+      <p className="text_area">{createDt}</p>
       {/* {content && (
         <>
           <textarea rows={10} cols={30} readOnly value={content}></textarea>

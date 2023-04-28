@@ -1,7 +1,7 @@
 import ListItem from "../components/ListItem";
 
 const DetailTemplate = () => {
-  return (
+  /*  return (
     <div className="Deatail_area">
       <div className="selectItem_area">
         <ListItem
@@ -46,7 +46,8 @@ const DetailTemplate = () => {
         ></ListItem>
       </div>
     </div>
-  );
+ 
+  );   */
 };
 
 export default DetailTemplate;

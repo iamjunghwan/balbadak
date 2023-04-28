@@ -263,3 +263,8 @@ img {
 
   padding: 20px;
 }
+
+.dateText {
+  width: 93%;
+  font-size: 35px;
+}

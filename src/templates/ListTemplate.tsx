@@ -13,10 +13,12 @@ const ListTemplate = () => {
 
   const fncItemlist = async () => {
     try {
-      const url = "/file/FileArrAPI";
-      const itemList: [] = await callApi.get(url);
-      dispatch({ type: "INIT", data: itemList });
-      FncSetComponentList();
+      const url = "/file/FilesFetchAPI";
+      const { success, data } = await callApi.get(url);
+      if (success && data) {
+        dispatch({ type: "INIT", data: data });
+        FncSetComponentList();
+      }
     } catch (error) {
       console.error("error : " + error);
     }

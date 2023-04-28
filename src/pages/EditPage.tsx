@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Header from "../components/Header";
 import EditTemplate from "../templates/EditTemplate";
+import ExceptPage from "../pages/ExceptPage";
 import { useNavigate, useParams } from "react-router-dom";
 import { GlobalStateContext } from "../config/reducer";
 import { callApi } from "../config/callApi.js";
@@ -15,6 +16,7 @@ const EditPage = () => {
     postLike: 3,
     postUserId: 200,
     filePath: "",
+    createDt: "",
   });
 
   //state에 set 시킨 데이터를 id값으로 필터 하여 아래 EditTemplate 컴포넌트로 전달
@@ -22,6 +24,8 @@ const EditPage = () => {
     if (itemList.length > 0) {
       const currItem = itemList.find((item, idx) => item.postId === Number(id));
       setItemProps(currItem);
+    } else {
+      nvg("/*", { replace: true });
     }
   }, [id, itemList]);
 
@@ -50,7 +54,8 @@ const EditPage = () => {
           postUserId: 200,
         };
 
-        const { success, data } = await callApi.post(url, params);
+        const { success, data, message } = await callApi.post(url, params);
+
         if (success && data) {
           nvg("/", { replace: true });
         }
