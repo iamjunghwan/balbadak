@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import Carousel from "../components/Carousel";
 
 const EditTemplate = ({ itemProps, getData }) => {
   const focus = useRef<any>();
@@ -24,9 +25,17 @@ const EditTemplate = ({ itemProps, getData }) => {
   return (
     <>
       <div className="edit_area">
-        <div className="file_area">
+        <div>
           <section>
-            <img className="img_area" src={itemProps.filePath}></img>
+            <Carousel>
+              {itemProps.files.length > 0
+                ? itemProps.files.map((item, idx) => (
+                    <div key={idx}>
+                      <img src={item.filePath} width={"100%"}></img>
+                    </div>
+                  ))
+                : ""}
+            </Carousel>
           </section>
         </div>
         <section>

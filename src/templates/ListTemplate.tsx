@@ -13,7 +13,7 @@ const ListTemplate = () => {
 
   const fncItemlist = async () => {
     try {
-      const url = "/file/FilesFetchAPI";
+      const url = "/post/postFetchAPI";
       const { success, data } = await callApi.get(url);
       if (success && data) {
         dispatch({ type: "INIT", data: data });
@@ -32,7 +32,7 @@ const ListTemplate = () => {
         <ListItem
           id={item.postId.toString()}
           key={item.postId.toString()}
-          imgSrc={item.filePath}
+          imgSrc={item.files}
           postContent={item.postContent}
         ></ListItem>
       ));

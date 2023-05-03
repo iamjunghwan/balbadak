@@ -1,7 +1,6 @@
 import { useReducer } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import EnrollPage from "./pages/EnrollPage";
-import DetailPage from "./pages/DetailPage";
 import EditPage from "./pages/EditPage";
 import Main from "./pages/Main";
 import ExceptPage from "./pages/ExceptPage";
@@ -22,10 +21,6 @@ const router = createBrowserRouter([
     path: "/enroll",
     element: <EnrollPage />,
   },
-  // {
-  //  path: "/detail",
-  // element: <DetailPage />,
-  // },
   {
     path: "/edit/:id",
     element: <EditPage />,

@@ -15,7 +15,7 @@ const EditPage = () => {
     postContent: "",
     postLike: 3,
     postUserId: 200,
-    filePath: "",
+    files: [],
     createDt: "",
   });
 
@@ -48,7 +48,7 @@ const EditPage = () => {
   const fncSave = async () => {
     if (window.confirm("게시물을 수정 하시겠습니까?")) {
       try {
-        const url = "/post/postUpdateAPI";
+        const url = "/file/FilesFetchAPI";
         const params = {
           ...itemProps,
           postUserId: 200,
