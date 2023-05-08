@@ -17,7 +17,7 @@ const ListTemplate = () => {
       const { success, data } = await callApi.get(url);
       if (success && data) {
         dispatch({ type: "INIT", data: data });
-        FncSetComponentList();
+        //FncSetComponentList();
       }
     } catch (error) {
       console.error("error : " + error);
@@ -25,9 +25,7 @@ const ListTemplate = () => {
   };
 
   const FncSetComponentList = () => {
-    if (itemList.length === 0) {
-      return;
-    } else {
+    if (itemList.length > 0) {
       return itemList.map((item, idx) => (
         <ListItem
           id={item.postId.toString()}
