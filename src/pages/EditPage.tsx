@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import Header from "../components/Header";
-import EditTemplate from "../templates/EditTemplate";
-import ExceptPage from "../pages/ExceptPage";
+import Header from "@/components/Header";
+import EditTemplate from "@/templates/EditTemplate";
 import { useNavigate, useParams } from "react-router-dom";
-import { GlobalStateContext } from "../config/reducer";
-import { callApi } from "../config/callApi.js";
+import { GlobalStateContext } from "@/config/reducer";
+import { callApi } from "@/config/callApi.js";
 
 const EditPage = () => {
   const nvg = useNavigate();

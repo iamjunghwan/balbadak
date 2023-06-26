@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, createContext } from "react";
+import { createContext } from "react";
 
 //기존 값 state , 변경값 action (data,type);
 const reducer = (state, action) => {
@@ -8,14 +8,9 @@ const reducer = (state, action) => {
       return action.data;
     }
 
-    case "EDIT": {
-      break;
-    }
     default:
       return state;
   }
-
-  return newState;
 };
 
 const GlobalStateContext = createContext("");

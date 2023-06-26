@@ -1,10 +1,8 @@
-import { useState, useContext } from "react";
-import Header from "../components/Header";
-import EnrollTemplate from "../templates/EnrollTemplate";
-import { GlobalDispatchContext } from "../config/reducer";
-
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { callApi } from "../config/callApi";
+import { callApi } from "@/config/callApi";
+import Header from "@/components/Header";
+import EnrollTemplate from "@/templates/EnrollTemplate";
 
 const EnrollPage = () => {
   const nvg = useNavigate();

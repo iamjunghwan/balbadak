@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import Carousel from "../components/Carousel";
+import Carousel from "@/components/Carousel";
 
 const EditTemplate = ({ itemProps, getData }) => {
   const focus = useRef<any>();
