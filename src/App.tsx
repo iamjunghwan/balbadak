@@ -6,7 +6,7 @@ import {
   GlobalStateContext,
   GlobalDispatchContext,
 } from "@/config/reducer";
-import "./App.css";
+import "@/App.css";
 
 const Main = lazy(() => import("@/pages/Main"));
 const EnrollPage = lazy(() => import("@/pages/EnrollPage"));
