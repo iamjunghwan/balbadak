@@ -12,6 +12,7 @@ const Main = lazy(() => import("@/pages/Main"));
 const EnrollPage = lazy(() => import("@/pages/EnrollPage"));
 const EditPage = lazy(() => import("@/pages/EditPage"));
 const ExceptPage = lazy(() => import("@/pages/ExceptPage"));
+const LoginPage = lazy(() => import("@/pages/LoginPage"));
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/*",
     element: <ExceptPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 ]);
 

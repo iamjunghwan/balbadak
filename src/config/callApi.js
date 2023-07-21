@@ -8,6 +8,8 @@ const callApi = axios.create({
   timeout: 30000,
 });
 
+console.log(axios.Test);
+
 callApi.interceptors.request.use(
   (config) => {
     try {

@@ -1,0 +1,69 @@
+diff --git a/node_modules/axios/index.d.ts b/node_modules/axios/index.d.ts
+index e194461..8c906d2 100644
+--- a/node_modules/axios/index.d.ts
++++ b/node_modules/axios/index.d.ts
+@@ -526,6 +526,7 @@ export function all<T>(values: Array<T | Promise<T>>): Promise<T[]>;
+ 
+ export interface AxiosStatic extends AxiosInstance {
+   create(config?: CreateAxiosDefaults): AxiosInstance;
++  Test : String;
+   Cancel: CancelStatic;
+   CancelToken: CancelTokenStatic;
+   Axios: typeof Axios;
+diff --git a/node_modules/axios/lib/axios.js b/node_modules/axios/lib/axios.js
+index c97e062..17af7c6 100644
+--- a/node_modules/axios/lib/axios.js
++++ b/node_modules/axios/lib/axios.js
+@@ -47,7 +47,8 @@ const axios = createInstance(defaults);
+ 
+ // Expose Axios class to allow class inheritance
+ axios.Axios = Axios;
+-
++axios.Test ='커스텀 axios';
++axios.test2 ='커스텀 axios2';
+ // Expose Cancel & CancelToken
+ axios.CanceledError = CanceledError;
+ axios.CancelToken = CancelToken;
+diff --git a/node_modules/axios/lib/core/Axios.js b/node_modules/axios/lib/core/Axios.js
+index 7a6e6f5..79e0cb0 100644
+--- a/node_modules/axios/lib/core/Axios.js
++++ b/node_modules/axios/lib/core/Axios.js
+@@ -23,10 +23,15 @@ class Axios {
+     this.defaults = instanceConfig;
+     this.interceptors = {
+       request: new InterceptorManager(),
+-      response: new InterceptorManager()
++      response: new InterceptorManager(),
++      exampleTest : new InterceptorManager()
+     };
+   }
+ 
++  exampleTest(){
++    return console.log("커스텀 라이브러리 ~~~~~~~~~~~~~~~");
++  };
++
+   /**
+    * Dispatch a request
+    *
+diff --git a/node_modules/axios/lib/utils.js b/node_modules/axios/lib/utils.js
+index ccf31b1..45a5459 100644
+--- a/node_modules/axios/lib/utils.js
++++ b/node_modules/axios/lib/utils.js
+@@ -19,6 +19,9 @@ const kindOfTest = (type) => {
+ 
+ const typeOfTest = type => thing => typeof thing === type;
+ 
++const test = ()=> {
++  return "test~~~~~~~~~~~~~~~~~~~`";
++}
+ /**
+  * Determine if a value is an Array
+  *
+@@ -669,6 +672,7 @@ const isThenable = (thing) =>
+ 
+ export default {
+   isArray,
++  test,
+   isArrayBuffer,
+   isBuffer,
+   isFormData,

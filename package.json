@@ -13,6 +13,7 @@
     "axios": "^1.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.2",
     "react-loading-skeleton": "^3.3.0",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
@@ -25,7 +26,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +51,8 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "cra-bundle-analyzer": "^0.1.1",
     "customize-cra": "^1.0.0",
+    "patch-package": "^7.0.0",
+    "postinstall-postinstall": "^2.1.0",
     "react-app-alias": "^2.2.2",
     "react-app-rewired": "^2.2.1"
   }
